@@ -8,7 +8,8 @@ import outManegement.backend.domain.enumcollect.Rank;
 @Getter
 @Setter
 public class Member {
-    private int memberId;
+    static Long giveMemberId=0L;
+    private Long memberId;
     private String userName;
     private String serviceNumber;
     private String phoneNumber;
@@ -16,6 +17,10 @@ public class Member {
     private Rank rank;
     private String position;
     private Permission permission;
+
+    public Member() {
+        memberId=giveMemberId++;
+    }
 
     public Member(String userName, String serviceNumber, String phoneNumber, Unit unit,
                   Rank rank, String position, Permission permission) {
@@ -26,6 +31,7 @@ public class Member {
         this.rank = rank;
         this.position = position;
         this.permission = permission;
+        memberId=giveMemberId++;
     }
 
 }
