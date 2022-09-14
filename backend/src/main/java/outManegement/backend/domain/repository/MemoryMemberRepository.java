@@ -1,6 +1,5 @@
 package outManegement.backend.domain.repository;
 
-import org.springframework.stereotype.Component;
 import outManegement.backend.domain.Account;
 
 import java.util.*;
@@ -9,8 +8,9 @@ public class MemoryMemberRepository implements MemberRepository {
     private Map<Long, Account> store = new HashMap<>();
 
     @Override
-    public void save(Account account) {
-        store.put(account.getMemberId(), account);
+    public Long save(Account account) {
+        store.put(account.getId(), account);
+        return account.getId();
     }
 
     @Override

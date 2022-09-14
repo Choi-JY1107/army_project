@@ -2,6 +2,7 @@ package outManegement.backend.web;
 import org.springframework.web.bind.annotation.*;
 import outManegement.backend.domain.Account;
 import outManegement.backend.domain.repository.MemberRepository;
+import outManegement.backend.service.MemberService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,21 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/members")
 public class MemberController {
-    MemberRepository memberRepository;
+    MemberService memberService;
 
-    public MemberController(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     @GetMapping("/list")
     public Object allMember(HttpServletRequest request, HttpServletResponse response){
-        return memberRepository.findAllMember();
+        return memberService.findAll();
     }
 
     @PostMapping("/new-form")
-    public Account saveMember(){
+    public Account saveMember(HttpServletRequest request){
         Account account = new Account();
-        memberRepository.save(account);
+        memberService.join(account);
         return account;
     }
 

@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
-@Component
 public class JdbcMemberRepository implements MemberRepository{
     private final DataSource dataSource;
 
@@ -16,8 +15,8 @@ public class JdbcMemberRepository implements MemberRepository{
     }
 
     @Override
-    public void save(Account account) {
-
+    public Long save(Account account) {
+        return 1L;
     }
 
     @Override
