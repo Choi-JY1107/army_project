@@ -3,40 +3,45 @@ package outManegement.backend.domain.repository;
 import org.springframework.stereotype.Component;
 import outManegement.backend.domain.Account;
 
-import java.util.*;
+import javax.sql.DataSource;
+import java.util.List;
+import java.util.Optional;
 
-public class MemoryMemberRepository implements MemberRepository {
-    private Map<Long, Account> store = new HashMap<>();
+@Component
+public class JdbcMemberRepository implements MemberRepository{
+    private final DataSource dataSource;
+
+    public JdbcMemberRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Override
     public void save(Account account) {
-        store.put(account.getMemberId(), account);
+
     }
 
     @Override
     public Optional<Account> findById(Long id) {
-        return Optional.ofNullable(store.get(id));
+        return Optional.empty();
     }
 
     @Override
     public Optional<Account> findByName(String name) {
-        return store.values().stream()
-                .filter(member -> member.getUserName().equals(name))
-                .findAny();
+        return Optional.empty();
     }
 
     @Override
     public List<Account> findAllMember() {
-        return new ArrayList<>(store.values());
+        return null;
     }
 
     @Override
     public void clearAll() {
-        store.clear();
+
     }
 
     @Override
     public void deleteById(Long id) {
-        store.remove(id);
+
     }
 }
