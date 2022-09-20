@@ -4,7 +4,7 @@ import style from "../style/Calendar.css";
 
 const cx = classNames.bind(style);
 
-const Calendar = () => {
+function Calendar(props) {
   const today = {
     year: new Date().getFullYear(), //오늘 연도
     month: new Date().getMonth() + 1, //오늘 월
@@ -13,9 +13,14 @@ const Calendar = () => {
   };
   const [selectedYear, setSelectedYear] = useState(today.year); //현재 선택된 연도
   const [selectedMonth, setSelectedMonth] = useState(today.month); //현재 선택된 달
-  //const [selectedDate, setSelectedDate] = useState(today.date); //현재 선택된 날짜
+  const [selectedDate, setSelectedDate] = useState(today.date); //현재 선택된 날짜
   //const [selectedDay, setSelectedDay] = useState(today.day); //현재 선택된 요일
   const dateTotalCount = new Date(selectedYear, selectedMonth, 0).getDate(); //선택된 연도, 달의 마지막 날짜
+
+  const onLogout = () => {
+    sessionStorage.removeItem('srvno')
+    document.location.href='/'
+  }
 
   //이전 달
   const prevMonth = useCallback(() => {
@@ -58,8 +63,8 @@ const Calendar = () => {
   //연도 고르기
   const yearControl = useCallback(() => {
     let yearArr = [];
-    const startYear = today.year - 10; //현재 년도부터 10년전 까지만
-    const endYear = today.year + 10; //현재 년도부터 10년후 까지만
+    const startYear = selectedYear - 10; //현재 년도부터 10년전 까지만
+    const endYear = selectedYear + 10; //현재 년도부터 10년후 까지만
     for (let i = startYear; i < endYear + 1; i++) {
       yearArr.push(
         <option key={i} value={i}>
@@ -76,7 +81,7 @@ const Calendar = () => {
         {yearArr}
       </select>
     );
-  }, [selectedYear, today.year]);
+  }, [selectedYear]);
 
   const changeSelectMonth = (e) => {
     setSelectedMonth(Number(e.target.value));
@@ -109,7 +114,7 @@ const Calendar = () => {
   //선택된 달의 날짜 반환 함수
   const returnDay = useCallback(() => {
     const week = ["일", "월", "화", "수", "목", "금", "토"]; //일주일
-	let emptyKey = 0;
+	  let emptyKey = 0;
     let dayArr = [];
 
     for (const nowDay of week) {
@@ -118,14 +123,13 @@ const Calendar = () => {
         for (let i = 0; i < dateTotalCount; i++) {
           dayArr.push(
             <div
+              onClick={() => setSelectedDate(i+1)}
               key={i + 1}
               className={cx(
                 {
                   //오늘 날짜일 때 표시할 스타일 클라스네임
                   today:
-                    today.year === selectedYear &&
-                    today.month === selectedMonth &&
-                    today.date === i + 1,
+                  selectedDate === i + 1,
                 },
                 { weekday: true }, //전체 날짜 스타일
                 {
@@ -158,7 +162,7 @@ const Calendar = () => {
     }
 
     return dayArr;
-  }, [selectedYear, selectedMonth, dateTotalCount, today.year, today.month, today.date]);
+  }, [selectedYear, selectedMonth, dateTotalCount, selectedDate]);
 
   return (
     <div className="container">
@@ -173,6 +177,9 @@ const Calendar = () => {
       </div>
       <div className="week">{returnWeek()}</div>
       <div className="date">{returnDay()}</div>
+      <div>
+        <button type='button' onClick={onLogout}>Logout</button>
+      </div>
     </div>
   );
 };
