@@ -2,20 +2,27 @@ package outManegement.backend.domain.outlist;
 
 import outManegement.backend.domain.enumcollect.OutType;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Entity
 public abstract class Out {
-    int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     int accountId;
     LocalDateTime departureDate;
     LocalDateTime arrivalDate;
     OutType outType;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
