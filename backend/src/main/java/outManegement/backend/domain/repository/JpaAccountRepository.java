@@ -4,14 +4,15 @@ import org.springframework.stereotype.Component;
 import outManegement.backend.domain.Account;
 
 import javax.persistence.EntityManager;
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 @Component
-public class JpaMemberRepository implements MemberRepository{
+public class JpaAccountRepository implements AccountRepository {
     private final EntityManager em;
 
-    public JpaMemberRepository(EntityManager em) {
+    public JpaAccountRepository(EntityManager em) {
         this.em = em;
     }
 
@@ -46,7 +47,13 @@ public class JpaMemberRepository implements MemberRepository{
     }
 
     @Override
-    public void deleteById(Long id) {
+    public Optional<Account> updateAccount(Long id) {
+        Account account = em.find(Account.class, id);
+        return Optional.ofNullable(account);
+    }
 
+    @Override
+    public void deleteById(Long id) {
+        em.remove(em.find(Account.class,id));
     }
 }

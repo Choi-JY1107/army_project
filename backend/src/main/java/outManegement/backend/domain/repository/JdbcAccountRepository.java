@@ -1,16 +1,15 @@
 package outManegement.backend.domain.repository;
 
-import org.springframework.stereotype.Component;
 import outManegement.backend.domain.Account;
 
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
-public class JdbcMemberRepository implements MemberRepository{
+public class JdbcAccountRepository implements AccountRepository {
     private final DataSource dataSource;
 
-    public JdbcMemberRepository(DataSource dataSource) {
+    public JdbcAccountRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -42,5 +41,10 @@ public class JdbcMemberRepository implements MemberRepository{
     @Override
     public void deleteById(Long id) {
 
+    }
+
+    @Override
+    public Optional<Account> updateAccount(Long id) {
+        return Optional.empty();
     }
 }
