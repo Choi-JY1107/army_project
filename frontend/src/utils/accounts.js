@@ -6,7 +6,6 @@ export const requestLogin = (srvno, password) =>
         userPw: password
     }, {
         headers: {
-            'AUTHORIZATION': 'jwt ', // + token,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
 }})
