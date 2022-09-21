@@ -9,8 +9,8 @@ button {
   padding: 20px 20px;
   border: 1px solid rgba(128, 128, 128, 0.267);
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 250px;
+  top: 200px;
   transform: translate(-50%, -50%);
 }
 

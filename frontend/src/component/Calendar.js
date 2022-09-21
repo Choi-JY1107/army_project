@@ -4,7 +4,7 @@ import style from "../style/Calendar.css";
 
 const cx = classNames.bind(style);
 
-function Calendar(props) {
+function Calendar() {
   const today = {
     year: new Date().getFullYear(), //오늘 연도
     month: new Date().getMonth() + 1, //오늘 월
@@ -17,10 +17,7 @@ function Calendar(props) {
   //const [selectedDay, setSelectedDay] = useState(today.day); //현재 선택된 요일
   const dateTotalCount = new Date(selectedYear, selectedMonth, 0).getDate(); //선택된 연도, 달의 마지막 날짜
 
-  const onLogout = () => {
-    sessionStorage.removeItem('srvno')
-    document.location.href='/'
-  }
+  
 
   //이전 달
   const prevMonth = useCallback(() => {
@@ -177,9 +174,6 @@ function Calendar(props) {
       </div>
       <div className="week">{returnWeek()}</div>
       <div className="date">{returnDay()}</div>
-      <div>
-        <button type='button' onClick={onLogout}>Logout</button>
-      </div>
     </div>
   );
 };

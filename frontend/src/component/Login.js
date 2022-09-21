@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import requestLogin from '../utils/accounts.js'
+import {requestLogin} from '../utils/accounts.js'
 
  
 function Login() {
@@ -20,7 +20,6 @@ function Login() {
         if(srvno === '') setText("아이디를 입력해주세요")
         else if(password === '') setText('패스워드를 입력해주세요')
         else{
-            console.log(srvno, password)
             requestLogin(srvno, password).then((response) => {
                 setText(response.data.message)
                 sessionStorage.setItem('srvno', srvno)
@@ -37,7 +36,7 @@ function Login() {
             <h2>Login</h2>
             <div>
                 <label htmlFor='srvno'>ID : </label>
-                <input type='srvno' name='srvno' value={srvno} onChange={handleInputId} />
+                <input type='text' name='srvno' value={srvno} onChange={handleInputId} />
             </div>
             <div>
                 <label htmlFor='password'>PW : </label>

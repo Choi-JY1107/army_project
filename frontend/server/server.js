@@ -13,23 +13,28 @@ app.get('/', (req, res) => {
 })
 
 app.post('/Accounts/login', (req, res) => {
-    const srvno = req.body.srvno;
-    const password = req.body.password;
-    const response = {
-        status: 0,
-        message: "",
-    }
-    console.log(srvno, password);
+    const srvno = req.body.userId;
+    const password = req.body.userPw;
+    console.log("로그인", srvno, password);
 
-    if(srvno=="aa" && password=="aa") {
-        response.status=200;
-        response.message="success";
-    }
-    else {
-        response.status=404;
-        response.message="failed";
-    }
-    res.status(response.status).send(response);
+    if(srvno=="aa" && password=="aa") res.status(200).send({message: 'success'})
+    else res.status(404).send({message: 'failed'});
+})
+
+app.get('/Accounts/logout', (req, res) => {
+    console.log("로그아웃")
+    res.status(200).send({message: 'success'})
+})
+
+app.get('/Accounts/:userId', (req, res, next) => {
+    const srvno = req.params.userId
+    console.log("계정조회", srvno)
+    res.status(200).send({message: 'success'})
+})
+
+app.get('/Accounts/list', (req, res) => {
+    console.log("리스트")
+    res.status(200).send({message: 'success'})
 })
 
 app.listen(port, () => console.log(`Node.js Server is running on port ${port}...`));
