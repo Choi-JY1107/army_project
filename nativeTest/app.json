@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Test1",
-    "slug": "Test1",
+    "name": "nativeTest",
+    "slug": "nativeTest",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
