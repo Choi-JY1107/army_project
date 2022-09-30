@@ -1,0 +1,71 @@
+.accounts {
+    width: 500px;
+    height: 700px;
+    margin: auto;
+    padding: 10px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.267);
+    position: absolute;
+    left: 785px;
+    top: 350px;
+    transform: translate(-50%, -50%);
+}
+
+.logout {
+    width: 500px;
+    height: 20px;
+    margin: auto;
+    padding: 10px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.267);
+    position: absolute;
+    left: 785px;
+    top: 70px;
+    transform: translate(-50%, -50%);
+}
+
+.search {
+    width: 500px;
+    height: 20px;
+    margin: auto;
+    padding: 10px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.267);
+    position: absolute;
+    left: 785px;
+    top: 130px;
+    transform: translate(-50%, -50%);
+}
+
+.list {
+    width: 500px;
+    height: 20px;
+    margin: auto;
+    padding: 10px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.267);
+    position: absolute;
+    left: 785px;
+    top: 180px;
+    transform: translate(-50%, -50%);
+}
+
+.input {
+    width: 150px;
+    height: 10px;
+    margin: auto;
+    padding: 10px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.267);
+    position: absolute;
+    left: 200px;
+    top: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.message {
+    width: 100px;
+    height: 20px;
+    margin: auto;
+    padding: 10px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.267);
+    position: absolute;
+    left: 400px;
+    top: 20px;
+    transform: translate(-50%, -50%);
+}
