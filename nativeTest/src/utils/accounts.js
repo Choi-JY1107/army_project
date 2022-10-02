@@ -1,16 +1,16 @@
 import request from './request.js'
 
-export const requestLogin = (srvno, password) =>
+export const RequestLogin = (userId, userPw) =>
     request.post('/Accounts/login', {
-        userId: srvno,
-        userPw: password
+        userId: userId,
+        userPw: userPw
     }, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
 }})
 
-export const requestLogout = () =>
+export const RequestLogout = () =>
     request.get('/Accounts/logout', {
         headers: {
             'AUTHORIZATION': 'jwt ', // + token,
@@ -18,15 +18,15 @@ export const requestLogout = () =>
             'Content-Type': 'application/json',
 }})
 
-export const requestSearch = (srvno) =>
-    request.get('/Accounts/' + srvno, {
+export const RequestSearch = (userId) =>
+    request.get('/Accounts/' + userId, {
             headers: {
                 'AUTHORIZATION': 'jwt ', // + token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
 }})
 
-export const requestList = () =>
+export const RequestList = () =>
     request.get('/Accounts/list', {
         headers: {
             'AUTHORIZATION': 'jwt ', // + token,

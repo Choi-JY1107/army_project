@@ -1,51 +1,43 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import {requestLogin} from '../utils/accounts.js';
+import { Alert } from 'react-native'; 
+import { NativeBaseProvider, FormControl, Input, Text, Button} from 'native-base';
+
+import { RequestLogin } from '../utils/accounts';
 
  
-function Login() {
-    const [srvno, setSrvno] = useState('')
-    const [password, setPassword] = useState('')
+function Login(props) {
+    const [userId, setuserId] = useState('')
+    const [userPw, setuserPw] = useState('')
     const [text, setText] = useState('')
-
-    const HandleInputId = (e) => {
-        setSrvno(e.target.value)
-    }
- 
-    const HandleInputPw = (e) => {
-        setPassword(e.target.value)
-    }
  
 	// login 버튼 클릭 이벤트
     const SignIn = () => {
-        if(srvno === '') setText("아이디를 입력해주세요")
-        else if(password === '') setText('패스워드를 입력해주세요')
+        if(userId === '') Alert.alert('로그인 오류', '아이디를 입력해주세요')
+        else if(userPw === '') Alert.alert('로그인 오류', '비밀번호를 입력해주세요')
         else{
-            requestLogin(srvno, password).then((response) => {
+            RequestLogin(userId, userPw).then((response) => {
                 setText(response.data.message)
-                sessionStorage.setItem('srvno', srvno)
-                document.location.href = '/'
+                Alert.alert('로그인 성공', '성공!')
+                props.navigation.navigate('Main')
             }).catch((error) => {
-                const msg = error.response.data.message
+                const msg = error.message
                 setText(msg)
+                Alert.alert('로그인 실패', '실패!')
             })
         }
     }
  
     return(
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text>Login</Text>
-                <Text htmlFor='srvno'>ID : </Text>
-                <input type='text' name='srvno' value={srvno} onChange={HandleInputId} />
-            
-                <Text htmlFor='password'>PW : </Text>
-                <input type='password' name='password' value={password} onChange={HandleInputPw} />
-            
-                <button type='button' onClick={SignIn}>Login</button>
-            
-            <Text>{text}</Text>
-        </View>
-
+        <NativeBaseProvider>
+            <FormControl style={{ flex: 1, justifyContent: 'center'}}>
+                <Text>아이디</Text>
+                <Input value={userId} onChangeText={(userId) => setuserId(userId)} />
+                <Text>비밀번호</Text>
+                <Input value={userPw} onChangeText={(userPw) => setuserPw(userPw)} />
+                <Text>{text}</Text>
+                <Button onPress={SignIn} >로그인</Button>
+            </FormControl>
+        </NativeBaseProvider>
     )
 }
  
