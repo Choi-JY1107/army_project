@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-native'; 
-import { NativeBaseProvider, FormControl, Input, Text, Button} from 'native-base';
+import { NativeBaseProvider, FormControl, Input, Text, Button, Image} from 'native-base';
 
 import { RequestLogin } from '../utils/accounts';
+import Army from '../assets/army.jpg';
 
  
 function Login(props) {
@@ -29,13 +30,19 @@ function Login(props) {
  
     return(
         <NativeBaseProvider>
-            <FormControl style={{ flex: 1, justifyContent: 'center'}}>
+            <FormControl style= {{ flex: 3, justifyContent: 'center', alignItems: 'center'}}>
+                <Image source={Army} style={{width: '70%'}} alt="error" />
+            </FormControl>
+
+            <FormControl style={{ flex: 6, justifyContent: 'center'}}>
+
                 <Text>아이디</Text>
-                <Input value={userId} onChangeText={(userId) => setuserId(userId)} />
+                <Input style={{borderRadius:30}} value={userId} onChangeText={(userId) => setuserId(userId)} />
                 <Text>비밀번호</Text>
                 <Input value={userPw} onChangeText={(userPw) => setuserPw(userPw)} />
                 <Text>{text}</Text>
                 <Button onPress={SignIn} >로그인</Button>
+                
             </FormControl>
         </NativeBaseProvider>
     )
