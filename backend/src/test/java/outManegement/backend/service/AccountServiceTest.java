@@ -5,10 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import outManegement.backend.domain.Account;
-import outManegement.backend.domain.enumcollect.Permission;
-import outManegement.backend.domain.enumcollect.Rank;
-import outManegement.backend.domain.repository.AccountRepository;
+import outManegement.backend.dao.Account;
+import outManegement.backend.dto.enumcollect.Permission;
+import outManegement.backend.dto.enumcollect.Rank;
+import outManegement.backend.repository.AccountRepository;
 
 import java.util.Optional;
 

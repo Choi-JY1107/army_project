@@ -1,15 +1,15 @@
 package outManegement.backend.service;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import outManegement.backend.domain.Unit;
-import outManegement.backend.domain.repository.UnitRepository;
+import outManegement.backend.dao.Unit;
+import outManegement.backend.repository.UnitRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Transactional
-@Component
+@Service
 public class UnitService {
     UnitRepository unitRepository;
 

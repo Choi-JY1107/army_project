@@ -1,6 +1,8 @@
 package outManegement.backend.web;
 import org.springframework.web.bind.annotation.*;
-import outManegement.backend.domain.Account;
+import outManegement.backend.dao.Account;
+import outManegement.backend.dto.enumcollect.Permission;
+import outManegement.backend.dto.enumcollect.Rank;
 import outManegement.backend.service.AccountService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,9 +34,16 @@ public class AccountController {
         }
     }
 
-    @PostMapping("/new-form")
-    public Account saveMember(HttpServletRequest request){
-        Account account = new Account();
+    @PostMapping("/create")
+    public Account saveMember(@RequestParam String name,
+                              @RequestParam String srvno,
+                              @RequestParam String telno,
+                              @RequestParam Long unitId,
+                              @RequestParam String rank,
+                              @RequestParam String position,
+                              @RequestParam int level
+                              ){
+        Account account = new Account(name,srvno,telno,unitId, Rank.DIAMOND1,position, Permission.ROOT);
         accountService.join(account);
         return account;
     }
