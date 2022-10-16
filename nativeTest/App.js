@@ -5,15 +5,19 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Login from './src/component/Login';
 import Main from './src/component/Main';
+import SignUp from './src/component/SignUp';
 
 
 const loginStackNav = createStackNavigator({
-    Login: {screen: Login}}, {
+    Login: {screen: Login},
+    SignUp: {screen: SignUp, navigationOptions: { headerShown: false }},
+}, {
     initialRouteName: 'Login'
 });
 
 const homeStackNav = createStackNavigator({
-    Main: {screen: Main}}, {
+    Main: {screen: Main, navigationOptions: { headerShown: false }}
+}, {
     initialRouteName: 'Main'
 });
 
